@@ -45,7 +45,7 @@ $GROUP_PREFIX   = "Lab-User-$AttendeeNumber"   # Converts "labuser-01" to "Lab-U
 
 
 
-# Step 3 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-3---option-b-assign-the-policy-using-azure-cli
+Step 3 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-3---option-b-assign-the-policy-using-azure-cli
 
 ```
 $POLICY_NAME = "$ATTENDEE_ID-restrict-to-sovereign-regions"
@@ -75,7 +75,7 @@ az policy assignment create `
 
 
 
-# Step 4 - [https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-3---option-b-assign-the-policy-using-azure-cli](https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-4-also-restrict-resource-group-locations)
+Step 4 - [https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-3---option-b-assign-the-policy-using-azure-cli](https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-4-also-restrict-resource-group-locations)
 
 
 ```
@@ -140,9 +140,6 @@ $STORAGE_PUBLIC_ACCESS_POLICY = "34c877ad-507e-4c82-993e-3452a6e0ad3c"
 $POLICY_NAME = "$ATTENDEE_ID-storage-disable-public-access"
 $POLICY_DISPLAY_NAME = "$DISPLAY_PREFIX - Storage accounts should disable public network access"
 
-# =========================
-# Create policy assignment
-# =========================
 
 az policy assignment create `
   --name $POLICY_NAME `
