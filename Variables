@@ -1,9 +1,9 @@
 # Customize RESOURCE_GROUP for each participant
-RESOURCE_GROUP="labuser-xx"   # Change this for each participant (e.g., labuser-01, labuser-02, ...) ==> CHANGE THIS!!!
+RESOURCE_GROUP="labuser-03"   # Change this for each participant (e.g., labuser-01, labuser-02, ...) ==> CHANGE THIS!!!
 
 ATTENDEE_ID="${RESOURCE_GROUP}"
 SUBSCRIPTION_ID="1c8e338e-802e-4d64-99d4-9a5a5ef469da"  # subscription ID of the Belgian microchack prefilled in
-LOCATION="swedencentral"  # If attending a MicroHack event, change to the location provided by your local MicroHack organizers [web:267]
+LOCATION="northeurope"  # If attending a MicroHack event, change to the location provided by your local MicroHack organizers [web:267]
 
 # =========================
 # Generate friendly display names with attendee ID
@@ -15,3 +15,33 @@ AttendeeNumber="${ATTENDEE_ID#labuser-}"  # Removes leading "labuser-" if presen
 
 DISPLAY_PREFIX="Lab User-${AttendeeNumber}"  # Converts "labuser-01" to "Lab User-01"
 GROUP_PREFIX="Lab-User-${AttendeeNumber}"    # Converts "labuser-01" to "Lab-User-01"
+
+
+
+
+
+
+Deploy a confidential VM command: 
+```
+LOCATION="northeurope"
+az vm create \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "vm-ubuntu-cvm" \
+  --location "$LOCATION" \
+  --size "Standard_DC2as_v5" \
+  --admin-username "$ADMIN_USERNAME" \
+  --ssh-key-value "$SSH_PUBLIC_KEY" \
+  --authentication-type ssh \
+  --enable-vtpm true \
+  --image "Canonical:0001-com-ubuntu-confidential-vm-jammy:22_04-lts-cvm:latest" \
+  --security-type "ConfidentialVM" \
+  --os-disk-security-encryption-type "VMGuestStateOnly" \
+  --enable-secure-boot true \
+  --vnet-name "vm-ubuntu-cvm-vnet" \
+  --subnet "vm-subnet" \
+  --public-ip-address ""
+
+az vm identity assign \
+  --resource-group "$RESOURCE_GROUP" \
+  --name "vm-ubuntu-cvm"
+```
