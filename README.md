@@ -147,4 +147,6 @@ az policy assignment create `
   --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP" `
   --policy $STORAGE_PUBLIC_ACCESS_POLICY
 ```
-  
+
+
+  Step 5 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#task-5-create-a-policy-initiative-bonus
