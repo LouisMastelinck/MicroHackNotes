@@ -44,9 +44,9 @@ $GROUP_PREFIX   = "Lab-User-$AttendeeNumber"   # Converts "labuser-01" to "Lab-U
 
 
 
-# =========================
+
 # Step 3 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-3---option-b-assign-the-policy-using-azure-cli
-# =========================
+
 ```
 $POLICY_NAME = "$ATTENDEE_ID-restrict-to-sovereign-regions"
 $POLICY_DISPLAY_NAME = "$DISPLAY_PREFIX - Restrict to Sovereign Regions"
@@ -74,9 +74,9 @@ az policy assignment create `
 
 
 
-# =========================
+
 # Step 4 - [https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-3---option-b-assign-the-policy-using-azure-cli](https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-4-also-restrict-resource-group-locations)
-# =========================
+
 
 ```
 $RG_POLICY_DEFINITION_ID="e765b5de-1225-4ba3-bd56-1ac6695af988"
