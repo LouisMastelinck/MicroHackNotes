@@ -8,7 +8,7 @@
 RESOURCE_GROUP="labuser-03"  # Change this for each participant (e.g., labuser-01, labuser-02, ...)
 
 ATTENDEE_ID="${RESOURCE_GROUP}"
-SUBSCRIPTION_ID="1c8e338e-802e-4d64-99d4-9a5a5ef469da"  # Replace with your subscription ID
+SUBSCRIPTION_ID="1c8e338e-802e-4d64-99d4-9a5a5ef469da"  # Replace with your subscription ID, you have to look this up! 
 LOCATION="norwayeast" #If attending a MicroHack event, change to the location provided by your local MicroHack organizers
 
 # Generate friendly display names with attendee ID
