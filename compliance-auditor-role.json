@@ -1,0 +1,20 @@
+{
+  "Name": "{{DISPLAY_NAME}} - Sovereign Compliance Auditor",
+  "IsCustom": true,
+  "Description": "Can view resources and compliance status but cannot make changes. Designed for sovereign cloud compliance officers.",
+  "Actions": [
+    "*/read",
+    "Microsoft.PolicyInsights/policyStates/queryResults/action",
+    "Microsoft.PolicyInsights/policyEvents/queryResults/action",
+    "Microsoft.PolicyInsights/policyTrackedResources/queryResults/read",
+    "Microsoft.Consumption/*/read",
+    "Microsoft.CostManagement/*/read",
+    "Microsoft.Security/*/read"
+  ],
+  "NotActions": [],
+  "DataActions": [],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/{{SUBSCRIPTION_ID}}/resourceGroups/{{RESOURCE_GROUP}}"
+  ]
+}
