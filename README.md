@@ -161,7 +161,40 @@ az policy assignment create `
   --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP" `
   --policy-set-definition "$INITIATIVE_ID"
 ```
-  
 
 
-  
+Task 6: Implement RBAC for SoverignOpsTeam
+
+Step 1 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-1-create-a-security-group-for-sovereignops-team
+```
+az ad group create `
+  --display-name "$GROUP_PREFIX-SovereignOps-Team" `
+  --mail-nickname "$GROUP_PREFIX-SovereignOps"
+
+Start-Sleep -Seconds 20
+```
+
+step 2 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-2-assign-built-in-roles-to-the-sovereignops-team
+```
+# Get the group's object ID
+GROUP_OBJECT_ID=$(az ad group show --group "${GROUP_PREFIX}-SovereignOps-Team" --query id -o tsv)
+
+# Assign Contributor role at resource group scope
+# Get the group's object ID
+$GROUP_OBJECT_ID = az ad group show `
+  --group "$GROUP_PREFIX-SovereignOps-Team" `
+  --query id `
+  -o tsv
+
+# Assign Contributor role at resource group scope
+az role assignment create `
+  --assignee $GROUP_OBJECT_ID `
+  --role "Contributor" `
+  --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP"
+```
+Task 7 - Create a Custom RBAC Role for Compliance Officers
+Step 1: Create the Custom Role Definition - download this file: https://github.com/LouisMastelinck/MicroHackNotes/blob/main/compliance-auditor-role.json
+
+
+
+https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#task-7-create-a-custom-rbac-role-for-compliance-officers
