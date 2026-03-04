@@ -193,8 +193,50 @@ az role assignment create `
   --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP"
 ```
 Task 7 - Create a Custom RBAC Role for Compliance Officers
-Step 1: Create the Custom Role Definition - download this file: https://github.com/LouisMastelinck/MicroHackNotes/blob/main/compliance-auditor-role.json
+Step 1: Create the Custom Role Definition -
+Instead of creating a file on your pc, lets make a file in the cli
+
+```
+@'
+{
+  "Name": "{{DISPLAY_NAME}} - Sovereign Compliance Auditor",
+  "IsCustom": true,
+  "Description": "Can view resources and compliance status but cannot make changes. Designed for sovereign cloud compliance officers.",
+  "Actions": [
+    "*/read",
+    "Microsoft.PolicyInsights/policyStates/queryResults/action",
+    "Microsoft.PolicyInsights/policyEvents/queryResults/action",
+    "Microsoft.PolicyInsights/policyTrackedResources/queryResults/read",
+    "Microsoft.Consumption/*/read",
+    "Microsoft.CostManagement/*/read",
+    "Microsoft.Security/*/read"
+  ],
+  "NotActions": [],
+  "DataActions": [],
+  "NotDataActions": [],
+  "AssignableScopes": [
+    "/subscriptions/{{SUBSCRIPTION_ID}}/resourceGroups/{{RESOURCE_GROUP}}"
+  ]
+}
+'@ | Set-Content -Path ".\compliance-auditor-role.json" -Encoding utf8
+```
+
+Step 2 - Replace placeholders:
+```
+# Replace placeholders (PowerShell equivalent of the sed -i lines)
+$content = Get-Content -Path ".\compliance-auditor-role.json" -Raw
+$content = $content.Replace("{{SUBSCRIPTION_ID}}", $SUBSCRIPTION_ID)
+$content = $content.Replace("{{RESOURCE_GROUP}}",  $RESOURCE_GROUP)
+$content = $content.Replace("{{DISPLAY_NAME}}",    $DISPLAY_PREFIX)
+Set-Content -Path ".\compliance-auditor-role.json" -Value $content -Encoding utf8
+
+```
+
+step 3 - create custom role
+```
+# Create the custom RBAC role from the JSON file
+az role definition create --role-definition "@compliance-auditor-role.json"
+
+```
 
 
-
-https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#task-7-create-a-custom-rbac-role-for-compliance-officers
