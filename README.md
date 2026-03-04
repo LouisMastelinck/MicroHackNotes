@@ -139,6 +139,8 @@ az policy assignment create `
   Download this file: https://github.com/LouisMastelinck/MicroHackNotes/blob/main/Custom%20Initiative%20Definition.json
 <img width="626" height="203" alt="image" src="https://github.com/user-attachments/assets/9b01375c-5ae0-4bd4-bd73-9ee3d6fa7b0e" />
 
+
+step 2 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-2-create-the-initiative-using-azure-cli
 ```
 az policy set-definition create `
   --name "$ATTENDEE_ID-sovereign-cloud-baseline" `
@@ -147,6 +149,9 @@ az policy set-definition create `
   --definitions sovereign-cloud-initiative.json `
   --subscription $SUBSCRIPTION_ID
 ```
+
+
+Step 3 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#step-3-assign-the-initiative
 ```
 $INITIATIVE_ID = "/subscriptions/$SUBSCRIPTION_ID/providers/Microsoft.Authorization/policySetDefinitions/$($ATTENDEE_ID)-sovereign-cloud-baseline"
 
