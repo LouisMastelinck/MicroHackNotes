@@ -1,0 +1,17 @@
+# Customize RESOURCE_GROUP for each participant
+RESOURCE_GROUP="labuser-xx"   # Change this for each participant (e.g., labuser-01, labuser-02, ...) ==> CHANGE THIS!!!
+
+ATTENDEE_ID="${RESOURCE_GROUP}"
+SUBSCRIPTION_ID="1c8e338e-802e-4d64-99d4-9a5a5ef469da"  # subscription ID of the Belgian microchack prefilled in
+LOCATION="swedencentral"  # If attending a MicroHack event, change to the location provided by your local MicroHack organizers [web:267]
+
+# =========================
+# Generate friendly display names with attendee ID
+# =========================
+
+# Equivalent of PowerShell: $ATTENDEE_ID -replace '^labuser-', ''
+# Equivalent of Bash: ${ATTENDEE_ID#labuser-}
+AttendeeNumber="${ATTENDEE_ID#labuser-}"  # Removes leading "labuser-" if present [web:200]
+
+DISPLAY_PREFIX="Lab User-${AttendeeNumber}"  # Converts "labuser-01" to "Lab User-01"
+GROUP_PREFIX="Lab-User-${AttendeeNumber}"    # Converts "labuser-01" to "Lab-User-01"
