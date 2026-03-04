@@ -150,3 +150,10 @@ az policy assignment create `
 
 
   Step 5 - https://github.com/microsoft/MicroHack/blob/main/03-Azure/01-03-Infrastructure/01_Sovereign_Cloud/walkthrough/challenge-01/solution-01.md#task-5-create-a-policy-initiative-bonus
+
+  Download this file: https://github.com/LouisMastelinck/MicroHackNotes/blob/main/Custom%20Initiative%20Definition.json
+<img width="626" height="203" alt="image" src="https://github.com/user-attachments/assets/9b01375c-5ae0-4bd4-bd73-9ee3d6fa7b0e" />
+
+
+
+  
