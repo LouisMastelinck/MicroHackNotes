@@ -1,20 +1,5 @@
 # MicroHackNotes
 
-### bash
-## Global variables
-# ##Set common variables
-### Customize RESOURCE_GROUP for each participant
-```
-RESOURCE_GROUP="labuser-03"  # Change this for each participant (e.g., labuser-01, labuser-02, ...)
-
-ATTENDEE_ID="${RESOURCE_GROUP}"
-SUBSCRIPTION_ID="1c8e338e-802e-4d64-99d4-9a5a5ef469da"  # Replace with your subscription ID, you have to look this up! 
-LOCATION="norwayeast" #If attending a MicroHack event, change to the location provided by your local MicroHack organizers
-
-# Generate friendly display names with attendee ID
-DISPLAY_PREFIX="Lab User-${ATTENDEE_ID#labuser-}"  # Converts "labuser-01" to "Lab User-01"
-GROUP_PREFIX="Lab-User-${ATTENDEE_ID#labuser-}"    # Converts "labuser-01" to "Lab-User-01"
-```
 
 
 ## Solution 1
@@ -154,6 +139,24 @@ az policy assignment create `
   Download this file: https://github.com/LouisMastelinck/MicroHackNotes/blob/main/Custom%20Initiative%20Definition.json
 <img width="626" height="203" alt="image" src="https://github.com/user-attachments/assets/9b01375c-5ae0-4bd4-bd73-9ee3d6fa7b0e" />
 
+```
+az policy set-definition create `
+  --name "$ATTENDEE_ID-sovereign-cloud-baseline" `
+  --display-name "$DISPLAY_PREFIX - Sovereign Cloud Security Baseline" `
+  --description "Enforce location, tagging, and network controls for sovereign workloads" `
+  --definitions sovereign-cloud-initiative.json `
+  --subscription $SUBSCRIPTION_ID
+```
+```
+$INITIATIVE_ID = "/subscriptions/$SUBSCRIPTION_ID/providers/Microsoft.Authorization/policySetDefinitions/$($ATTENDEE_ID)-sovereign-cloud-baseline"
+
+az policy assignment create `
+  --name "$($ATTENDEE_ID)-sovereign-baseline-assignment" `
+  --display-name "$($DISPLAY_PREFIX) - Sovereign Cloud Security Baseline" `
+  --scope "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP" `
+  --policy-set-definition "$INITIATIVE_ID"
+```
+  
 
 
   
